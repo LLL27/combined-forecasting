@@ -1,0 +1,359 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{margin=1in}
+\usepackage[singlespacing]{setspace}
+\usepackage[round]{natbib} 
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{amsmath,amsthm,epsfig,amsfonts, color, epstopdf, bm}
+\usepackage{amsbsy}
+\usepackage{amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+%\usepackage[a4paper]{geometry}
+%\usepackage{showkeys}
+\usepackage{rotating}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+%\usepackage[T1]{fontenc}
+%\usepackage[urw-garamond]{mathdesign}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx} % Allows including images
+\usepackage{epstopdf}
+%\usepackage{subfig}
+%\usepackage{subfigure}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+%\usepackage[capposition=top]{floatrow}
+\usepackage{floatrow}
+\usepackage{url}
+\usepackage{afterpage}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{lipsum}
+%\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{authblk}
+\usepackage[flushleft]{threeparttable}
+%\usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage{floatrow}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{makecell}
+\usepackage[capitalise, nameinlink]{cleveref}
+\usepackage[title]{appendix}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{needspace}
+
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{multirow} % 用于跨行单元格
+
+\newtheorem{theorem}{{Theorem}}
+\newtheorem{lemma}{{Lemma}}
+\newtheorem{remark}{{Remark}}
+%\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+\renewcommand{\baselinestretch}{1.3}
+\floatsetup[table]{capposition=top}
+\floatsetup[figure]{capposition=bottom}
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\font\authorfont=cmr12 at 11pt
+
+\def\marginnote#1{\setbox0=\vtop{\hsize4pc
+\small\raggedright\noindent\baselineskip9pt \rightskip=0.5pc plus
+1.5pc #1}\leavevmode \vadjust{\dimen0=\dp0
+\kern-\ht0\hbox{\kern-4.00pc\box0}\kern-\dimen0}}
+\def\lboxit#1{\vbox{\hrule\hbox{\vrule\kern6pt
+\vbox{\kern6pt#1\kern6pt}\kern6pt\vrule}\hrule}}
+\def\boxit#1{\begin{center}\fbox{#1}\end{center}}
+\def\bib{\vskip 0pt\par\noindent\hangindent= 20 pt\hangafter=1}
+%\setstretch{2}
+\def\X{\bm X}
+\def\Y{\bm Y}
+\def\Z{\bm Z}
+\def\W{\bm W}
+
+\title{An uncertainty-based combination forecasting method for macroeconomics}
+\author{{Meishao Liu$^{a,b}$, ~ Xiaohui Liu$^{a,b}$\footnote{Corresponding author's email: liuxiaohui@jxufe.edu.cn.}, ~ Jinbao Wei$^{a,b}$, ~~ Ziqiang Li$^{a,b}$
+        }\\
+        {\em\footnotesize $^a$ School of Statistics and Data Science, Jiangxi University of Finance and Economics, Nanchang, Jiangxi 330013, China}\\
+        {\em\footnotesize $^b$ Key Laboratory of Data Science in Finance and  Economics, Jiangxi University of Finance and Economics, Nanchang, Jiangxi 330013, China}\\
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+\noindent
+    abstract
+
+\vspace{0.5cm}
+
+\bigskip
+\noindent \textit{Keywords}: forecast; moving block bootstrap\\
+\noindent \textit{JEL classification}: \textbf{G}
+\end{abstract}
+
+
+ \newpage
+\setcounter{page}{1}
+\section{Introduction}
+\paragraph{}
+Forecasts of macroeconomic variables are essential for central banks in formulating monetary policy. Among these, the Consumer Price Index (CPI) is a key indicator that measures changes in the aggregate consumer price level. As such, the CPI significantly drives economic activity and influences various market forces. A plethora of methodologies have been proposed for CPI forecasting, including traditional time-series models, Grey prediction models, and conventional forecast combination frameworks; see, for example, \cite{elliott2004optimal}, \cite{FAUST20132}, \cite{norouzi2020black}, and \cite{chen2023time}, and references therein.
+
+However, although traditional forecasting models can be incrementally optimized to improve the accuracy, researchers have confirmed that CPI exhibits intricate dynamic changes and structural shifts that conventional linear frameworks fail to accommodate, see \cite{zhang2008structural}, \cite{wang2016improving} and \cite{pratap2019macroeconomic}. To overcome these methodological limitations, an increasing amount of effort in recent literature has been directed towards machine learning techniques. \cite{barkan2023forecasting} apply neural networks to CPI forecasting
+
+
+
+
+These features render the Chinese CPI data-generating process highly nonlinear and time-varying, making reliable point forecasts difficult to obtain from any single model. Developing robust and flexible forecasting methods that can adapt to such complexity is therefore both practically important and methodologically challenging.
+
+inflation is a non-stationary process,
+The well-known no-free-lunch theorem, for example described in \cite{wolpert1996lack},
+\section{Forecast combination method}
+\paragraph{}
+
+\subsection{Classficaiton of forecasting methods}
+
+Before describing the uncertainty-based combination forecasting model in detail, we briefly overview the main existing forecasting methods. We categorize commonly used forecasting models into the following five groups based on their modeling perspectives, see Table \ref{tab:model_summary}. 
+
+
+\begin{table}[t]
+  \centering
+  \caption{Summary of Model Classification}
+  \label{tab:model_summary}
+  \begin{threeparttable}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.5}
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{ccc}
+  \toprule
+  \textbf{Category} & \textbf{Model} & \textbf{Description} \\
+  \midrule
+  \multirow{2}{*}{\textit{I. Benchmark}}
+   & RW & Naive random walk benchmark \\
+   & AR($p$) & Univariate autoregression using lagged CPI values \\
+  \midrule
+  \multirow{2}{*}{\textit{II. Multivariate}}
+   & VAR($p$) & Vector autoregression modeling cross-variable dynamics \\
+   & FAVAR($p$) & Factor-augmented VAR combining PCA and VAR structure \\
+  \midrule
+  \multirow{2}{*}{\textit{III. Factor Models}}
+   & DFM($p$) & Dynamic factor model with state-space representation \\
+   & Target Factor & Targeted predictor factor model focusing on forecast target \\
+  \midrule
+  \multirow{3}{*}{\textit{IV. Ensemble Methods}}
+   & Bagging & Bootstrap aggregating of regression trees (Bagging) \\
+   & Random Forests & Random forests with decorrelated tree averaging \\
+   & XGBoost & Extreme gradient boosting with regularization \\
+  \midrule
+  \multirow{2}{*}{\textit{V. Neural Networks}}
+      & NNAR & Neural network autoregression  \\
+   & DeepAR & Deep autoregressive RNN for probabilistic forecasting \\
+  \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+  \footnotesize
+  \item \textbf{Note:} This study focuses on introducing the principles of AR, FAVAR, DFM, XGBoost and NNAR models as we focus on these five methods for forecasting. Detailed mathematical formulations for selected models are provided below.
+  \end{tablenotes}
+  \end{threeparttable}
+  \end{table}
+
+ We select five representative forecasting models for our uncertainty-based combination framework, spanning parametric time series models, factor models, and machine learning algorithms. These models are  established benchmarks in the CPI forecasting literature and exhibit complementary strengths in capturing linear dynamics, factor structures, and nonlinear relationships; see,  \cite{barkan2023forecasting} and \cite{sengupta2025forecasting}. The framework incorporates the following forecasting models:
+
+  \begin{itemize}
+      \item \textbf{AR ($p$) -- Autoregressive model.} The AR model forecasts the variable of interest using a linear combination of its own past values, serving as the fundamental benchmark in CPI forecasting \citep{box1970time}. The AR($p$) model is specified as:
+      \begin{equation}
+      \hat{y}_{t} = \alpha_0 + \sum_{i=1}^{p} \alpha_i y_{t-i} + \varepsilon_{t},
+      \end{equation}
+      where $\alpha_i$ denotes the model coefficients, and the lag order $p$ is selected by the Bayesian Information Criterion (BIC).
+
+      \item \textbf{FAVAR ($p$) -- Factor-augmented vector autoregression.} The FAVAR model augments standard VARs with estimated factors, enabling the exploitation of rich information sets while preserving the VAR structure. Following \citet{bernanke2005measuring}, the model consists of two core equations. First, the measurement equation estimates latent factors from an informational time series set:
+
+       \begin{equation}
+        \mathbf{X}_t = \mathbf{L}_t \mathbf{F}_t + \mathbf{e}_t,
+       \end{equation}
+      where $\mathbf{L}_t$ denotes the factor loading matrix, and $\mathbf{F}_t$ represents the unobserved latent factors. Second, the transition equation connects the observed target variables with the latent factors in a VAR structure:
+       \begin{equation}
+        \begin{bmatrix} Y_t \\ \mathbf{F}_t \end{bmatrix} = \boldsymbol{\Phi}(L) \begin{bmatrix} Y_{t-l} \\ \mathbf{F}_{t-l} \end{bmatrix} + \boldsymbol{\varepsilon}_t,
+       \end{equation}
+       where $\mathbf{F}_t$ is the vector of extracted latent factors, and $\boldsymbol{\Phi}(L)$ is the lag polynomial.
+
+
+      \item \textbf{DFM ($p$) -- Dynamic factor model.} The Dynamic Factor Model \citep{stock2002macroeconomic, stock2002forecasting} provides a more parsimonious state-space representation compared to FAVAR. The model extracts a small number of common factors from a large panel of macroeconomic series to generate forecasts. It consists of a measurement equation and a transition equation:
+      \begin{align}
+      \mathbf{X}_t &= \boldsymbol{\Lambda}\mathbf{F}_t + \boldsymbol{\xi}_t, \quad \boldsymbol{\xi}_t \sim \text{N}(0, \mathbf{R}), \\
+      \mathbf{F}_t &= \sum_{i=1}^{p} \boldsymbol{\Psi}_i\mathbf{F}_{t-i} + \boldsymbol{\eta}_t, \quad \boldsymbol{\eta}_t \sim \text{N}(0, \mathbf{Q}),
+      \end{align}
+      where $\mathbf{X}_t$ is the $N$-dimensional vector of observed macroeconomic series, $\mathbf{F}_t$ is the $r$-dimensional vector of unobserved common factors, $\boldsymbol{\Lambda}$ is the $N \times r$ loading matrix, $\boldsymbol{\Psi}_i$ are $r \times r$ transition matrices, and $\boldsymbol{\xi}_t$, $\boldsymbol{\eta}_t$ are idiosyncratic and factor errors, respectively.
+
+      \item \textbf{XGBoost -- Extreme gradient boosting.} XGBoost is a scalable ensemble learning method based on gradient boosting \citep{chen2016xgboost}. The model builds an additive ensemble of regression trees, where each tree is trained to correct the residual errors of its predecessors. The predicted value is obtained by summing the outputs of $K$ regression trees:
+      \begin{equation}
+      \hat{y}_{t+h} = \sum_{k=1}^{K} f_k(\mathbf{x}_{t+h}), \quad f_k \in \mathcal{F},
+      \end{equation}
+      where $\mathcal{F}$ is the space of regression trees, and $\mathbf{x}_{t+h} = [y_t, y_{t-1}, \dots, y_{t-p}, \mathbf{X}_t']'$ is the feature vector including lagged CPI and exogenous variables. The model is trained by minimizing the regularized objective:
+      \begin{equation}
+      \mathcal{L}(\phi) = \sum_{i=1}^{n} l(y_i, \hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k),
+      \end{equation}
+      where $l(\cdot)$ is the loss function and $\Omega(f_k)$ is a regularization term that penalizes model complexity.
+
+      \item \textbf{NNAR -- Neural network autoregression.} The NNAR model applies a feed-forward neural network to autoregressive inputs, capturing nonlinear relationships among lagged observations \citep{hyndman2018forecasting, zhang1998forecasting}. For a univariate time series, the NNAR($p, k$) model is specified as:
+      \begin{equation}
+      \hat{y}_{t+h} = f(y_t, y_{t-1}, \dots, y_{t-p+1}) + \varepsilon_t,
+      \end{equation}
+      where $f$ is a single-hidden-layer neural network with $k$ hidden neurons and $p$ lagged inputs. Each hidden neuron applies a nonlinear activation:
+      \begin{equation}
+      z_j = \sigma\left(\sum_{i=1}^{p} w_{ij} y_{t-i+1} + b_j\right), \quad j = 1, \dots, k,
+      \end{equation}
+      where $\sigma(\cdot)$ is the sigmoid activation function, and $w_{ij}$, $b_j$ are the weights and biases of the hidden layer. The output layer aggregates the hidden neurons linearly:
+      \begin{equation}
+      \hat{y}_{t+h} = \sum_{j=1}^{k} v_j z_j + b_0,
+      \end{equation}
+      where $v_j$ and $b_0$ are the output layer weights and bias.
+  \end{itemize}
+
+
+
+\subsection{The uncertainty-based combination forecasting method}
+\paragraph{}
+
+This section provides a comprehensive description of our proposed method, named the uncertainty-based combination forecasting method, which assigns weights to individual models based on their estimated prediction reliability by applying moving block bootstrap method.
+
+
+Suppose $Y_t$ denotes the CPI value at time $t$, the variable set $\bm{X_t} = (X_{t,1}, \cdots, X_{t,d})^\top$ represents $d$ macroeconomic indicators and lagged CPI values used for forecasting. We consider $m$ approaches to predict the value of CPI, therefore $\hat{y}_{t+h, i}$ represents the forecast value made by the forecasting model $i(i = 1, \cdots, m)$ at time $t$, ahead by $h$ periods as follows:
+\begin{equation}
+     \hat{Y}_{t+h,i} = f_i(\bm{X_t}, \bm{Y_t}) + \mu_{t+h}, 
+\end{equation}
+where $f_i(\bm{X_t}, \bm{Y_t})$ is the forecasting function under a specific model, which contains the lagged terms of CPI, independent variables related to CPI, and their common factors; and $\mu_{t+h}$ denotes random model errors with mean zero.
+
+
+To leverage the complementary advantages of the $m$ methods, we propose an uncertainty based strategy to design the weights for combined forecasting. Specifically, we aim to dynamically assign higher weights to models with lower prediction uncertainty, where the uncertainty is measured by the variability of bootstrap predictions. We designate a validation dataset of length $H$ to determine the combination weights, which are then applied to the test dataset. Within the validation dataset, we employ an expanding window approach with a step size of one period to compute the mean squared prediction error(MSPE) for each model. The optimal weights are subsequently derived based on the weighted average MSPE over the validation period.
+  
+
+For this purpose, we adopt the moving block bootstrap (MBB) in \cite{kunsch1989jackknife} to estimate $\hat{Y}_{t+1, i}$ for each model, which preserves the temporal dependence structure inherent in economic time series.
+
+\begin{itemize}
+  \item  \textbf{Step 1}. Divide the original time series $(\bm{X_t},\bm{Y_t})$ into overlapping blocks with identical length $l$, where $l$ is obtained by using the statistical software R package `blocklength':
+    \[
+      \begin{aligned}
+        \bm{B_1} &= \{(\bm{X_1}, \bm{Y_1}), (\bm{X_2}, \bm{Y_2}), \dots, (\bm{X_l}, \bm{Y_l})\}, \\
+        \bm{B_2} &= \{(\bm{X_2}, \bm{Y_2}), (\bm{X_3}, \bm{Y_3}), \dots, (\bm{X_{l+1}}, \bm{Y_{l+1}})\}, \\
+        &\vdots \\
+        \bm{B_{t-l+1}} &= \{(\bm{X_{t-l+1}}, \bm{Y_{t-l+1}}), (\bm{X_{t-l+2}}, \bm{Y_{t-l+2}}), \dots, (\bm{X_t}, \bm{Y_t})\}.
+      \end{aligned}
+    \]
+    
+  \item \textbf{Step 2}. Compute the number of blocks to sample \( k = \lceil t / l \rceil \) and randomly draw \( k \) blocks with replacement from \( \{\bm{B_1}, \bm{B_2}, \dots, \bm{B_{t-l+1}}\} \), and then align resampled blocks in one bootstrap sample: \( (\bm{X_1^b}, \bm{Y_1^b}), \cdots, (\bm{X_{t}^b}, \bm{Y_t^b}) \).
+
+  \item \textbf{Step 3}. Obtain $\hat{Y}_{t+1,i}^b$ by using the constructed bootstrap sample:
+     \[
+      \hat{Y}_{t+1, i}^b = f_i\{(\bm{X_1^b}, \bm{Y_1^b}), \cdots, (\bm{X_{t}^b}, \bm{Y_t^b})\} + \mu_{t+1}.
+    \]
+
+     \item \textbf{Step 4}. Repeat the above two steps B times with bootstrap replications to get  $\{\hat{Y}_{t+1, i}^b\}_{b=1}^B$.
+\end{itemize}
+
+Based on $\{\hat{Y}_{t+1, i}^b\}_{b=1}^B$, we can measure the uncertainty of estimation and obtain the the mean squared prediction error (MSPE) of bootstrap predictions relative to $Y_{t+h}$:
+
+\begin{equation}
+    \text{MSPE}_{t+1,i} = \frac{1}{B} \sum_{b=1}^B \left( \hat{Y}_{t+1, i}^b - Y_{t+1} \right)^2,
+\end{equation}
+
+hence, the weighted average \text{MSPE} during the validation period can be calculated as follows:
+
+\begin{equation}
+   \overline{\text{MSPE}}_i = \frac{1}{H} \sum_{t=T_0}^{T_0+H} \text{MSPE}_{t+1,i}.
+\end{equation}
+
+Finally, based on the $\overline{\text{MSPE}}_i$, we calculate the optimal combination weight vector $\boldsymbol{w} = (w_1, w_2, \dots, w_m)^\top$ using the inverse MSPE weighting scheme:
+\begin{equation}
+    w_i = \frac{\frac{1}{\text{MSPE}_i}}{\sum_{j=1}^{m} \frac{1}{\text{MSPE}_j}}, \quad i = 1, \dots, m,
+\end{equation}
+where the weights satisfy $\sum_{i=1}^m w_i = 1$ and $w_i \in [0,1]$ for $i = 1, \dots, m$.
+
+Once the optimal weights are determined, the combined forecast is obtained by taking the weighted average of individual model predictions:
+\begin{equation}
+    \hat{Y}_{\text{com},t+1} = \sum_{i=1}^{m} w_i \hat{Y}_{t+1,i}.
+\end{equation}
+
+%This uncertainty-based combination forecasting method dynamically adjusts the weights according to the models' historical predictive performance, thereby leveraging the complementary strengths of different forecasting approaches while mitigating the risk of relying on any single model.
+
+
+\begin{algorithm}
+ \caption{The uncertainty-based combination forecasting method}
+ \label{alg:lcs}
+ \begin{algorithmic}[1]
+  \REQUIRE $\{Y_t\}_{t=1}^{n}$; the variable set $\{\bm{X_t}\}_{t=1}^{n}$, where $\bm{X_t} = (X_{t,1}, \cdots, X_{t,d})^\top$; a set of $m$ forecasting models $\{f_i\}_{i=1}^m = \{f_1, f_2, \cdots, f_m\}$.
+  \ENSURE Combined forecasting value $\hat{Y}_{\text{com}, t+h} = \sum_{i=1}^m {\omega_i\hat{Y}_{t+h,i}}$, where $h \in \{1, 2, \cdots, H\}$.
+  
+  \FOR{\( t = T_0 \) \TO \( T_0 + H\)}
+    \FOR{\(i = 1\) \TO \(m\)}
+    \STATE Calculate the forecasting values for \(m\) forecasting models:
+    \[
+      \hat{Y}_{t+1,i} = f_i(\bm{X_t}, \bm{Y_t}) + \mu_{t+1}, 
+    \]
+    where $\bm{Y_t} = (Y_t, Y_{t-1}, \cdots, Y_{t-p})^\top$.
+    \STATE Applying moving block bootstrap method in xxx(cite Kunsch 1989) to estimate $\hat{Y}_{t+1,i}$:
+    
+    \STATE \textbf{Step 1} Divide the original time series $(\bm{X_t},\bm{Y_t})$ into overlapping blocks with identical length $l$, where $l$ is obtained by using the statistical software R package `blocklength' :
+    \[
+      \begin{aligned}
+        \bm{B_1} &= \{(\bm{X_1}, \bm{Y_1}), (\bm{X_2}, \bm{Y_2}), \dots, (\bm{X_l}, \bm{Y_l})\}, \\
+        \bm{B_2} &= \{(\bm{X_2}, \bm{Y_2}), (\bm{X_3}, \bm{Y_3}), \dots, (\bm{X_{l+1}}, \bm{Y_{l+1}})\}, \\
+        &\vdots \\
+        \bm{B_{t-l+1}} &= \{(\bm{X_{t-l+1}}, \bm{Y_{t-l+1}}), (\bm{X_{t-l+2}}, \bm{Y_{t-l+2}}), \dots, (\bm{X_t}, \bm{Y_t})\}.
+      \end{aligned}
+    \]
+    
+    \STATE \textbf{Step 2} Compute the number of blocks to sample \( k = \lfloor t / l \rfloor \) and randomly draw \( k \) blocks with replacement from \( \{\bm{B_1}, \bm{B_2}, \dots, \bm{B_{t-l+1}}\} \), and then align resampled blocks in one bootstrap sample: \( (\bm{X_1^b}, \bm{Y_1^b}), \cdots, (\bm{X_{t}^b}, \bm{Y_t^b}) \).
+    
+    \STATE \textbf{Step 3} Obtain $\hat{Y}_{t+1,i}^b$ by using the constructed bootstrap sample:
+     \[
+      \hat{Y}_{t+1, i}^b = f_i\{(\bm{X_1^b}, \bm{Y_1^b}), \cdots, (\bm{X_{t}^b}, \bm{Y_t^b})\} + \mu_{t+1}.
+    \]
+    \STATE \textbf{Step 4} Repeat the above two steps B times with bootstrap replications to get  $\{\hat{Y}_{t+1, i}^b\}_{b=1}^B$.
+    \STATE Calculate the mean squared prediction error (MSPE) of bootstrap predictions relative to $Y_{t+1}$ and its weighted average $\overline{\text{MSPE}}_i$ across forecasting periods for each method:
+    \[
+      \text{MSPE}_{t+1,i} = \frac{1}{B} \sum_{b=1}^B \left( \hat{Y}_{t+1, i}^b - Y_{t+1} \right)^2, \quad \overline{\text{MSPE}}_i = \frac{1}{H} \sum_{t=T_0}^{T_0+H} \text{MSPE}_{t+1,i}.
+    \]
+    \ENDFOR
+    \STATE Calculate the optimal weight vector \( \boldsymbol{w} = (w_1, w_2, \dots, w_m)^\top\) (\( \sum_{i=1}^m w_i = 1 \), \( w_i \in [0,1] \), \( i = 1, \dots, m \)):
+    \[
+    \omega_i = \frac{\frac{1}{\overline{\text{MSPE}}_i}}{\sum_{i=1}^m(\frac{1}{\overline{\text{MSPE}}_i})}, \quad i = 1, \dots, m.
+    \]
+    \STATE Combine the predictions for each model using the optimal weight \( \boldsymbol{w} \) and obtain $\hat{Y}_{\text{com},t+1} = \sum_{i=1}^m w_i\hat{Y}_{t+1,i}$.
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+\section{An empirical study}
+\paragraph{}
+
+\section{Conclusions}
+\paragraph{}
+
+\bigskip
+\bibliographystyle{elsarticle-harv}
+\bibliography{ref}
+
+
+\end{document}

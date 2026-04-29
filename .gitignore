@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.Renviron
+
+# 大文件/临时输出（按需调整）
+*.log
+*.tmp
+~$*
+
+# IDE
+.vscode/
+.idea/
